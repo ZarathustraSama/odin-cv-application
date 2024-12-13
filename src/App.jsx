@@ -8,9 +8,15 @@ function App() {
 
   return (
     <>
-      <GeneralInfo></GeneralInfo>
-      <EducationalExp></EducationalExp>
-      <PracticalExp></PracticalExp>
+      <h1>CV Application</h1>
+      <div className="grid">
+        <h2>General Informations</h2>
+        <GeneralInfo></GeneralInfo>
+        <h2>Educational Experience</h2>
+        <EducationalExp></EducationalExp>
+        <h2>Practical Experience</h2>
+        <PracticalExp></PracticalExp>
+      </div>
     </>
   )
 }
