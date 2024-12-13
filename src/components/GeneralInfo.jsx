@@ -1,56 +1,98 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react"
-import EditButton from "./EditButton";
-import SubmitButton from "./SubmitButton";
-
-function NameInput({ first, last }) {
-  const [firstName, setFirstName] = useState(first);
-  const [lastName, setLastName] = useState(last);
+import Input from "./Input";
 
 
-  return (
-    <>
-      <label>{'First Name: '}</label>
-      <input type="text">{firstName}</input>
-      {' '}
-      <br />
-      <label>{'Last Name: '}</label>
-      <input type="text">{lastName}</input>
-      <br />
-    </>
-  )
-}
+export default function GeneralInfo() {
+  const [readOnly, setReadOnly] = useState(false)
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
-function EmailInput({ email }) {
-  const [emailAddress, setEmailAddress] = useState(email);
+  function handleFirstNameChange(e) {
+    setFirstName(e.target.value);
+  }
 
-  return (
-    <>
+  function handleLastNameChange(e) {
+    setLastName(e.target.value);
+  }
 
-    </>
-  )
-}
+  function handleEmailChange(e) {
+    setEmail(e.target.value);
+  }
 
-function PhoneInput({ number }) {
-  const [phoneNumber, setPhoneNumber] = useState(number);
+  function handlePhoneChange(e) {
+    setPhone(e.target.value);
+  }
 
-  return (
-    <>
-      
-    </>
-  )
-}
+  function handleClick(read) {
+    setReadOnly(read)
+  }
 
-export default function GeneralInfo(props) {
-  return (
-    <>
-      <NameInput ></NameInput>
-      <EditButton></EditButton>
-      <EmailInput></EmailInput>
-      <EditButton></EditButton>
-      <PhoneInput></PhoneInput>
-      <EditButton></EditButton>
-      <SubmitButton></SubmitButton>
-    </>
-  )
+  if (readOnly) {
+    return (
+      <section>
+        <div className="detail">
+          <label>First Name: </label>
+          <p>{firstName}</p>
+        </div>
+        <div className="detail">
+          <label>Last Name: </label>
+          <p>{lastName}</p>
+        </div>
+        <div className="detail">
+          <label>Email: </label>
+          <p>{email}</p>
+        </div>
+        <div className="detail">
+          <label>Phone: </label>
+          <p>{phone}</p>
+        </div>
+        <button 
+          type="button" 
+          className="edit" 
+          onClick={ () => { handleClick(false) }}
+        >
+          Edit
+        </button>
+      </section>
+    )
+  }
+  else {
+    return (
+      <form onSubmit={e => e.preventDefault()}>
+        <Input
+          label={'First Name: '}
+          type={'text'}
+          value={firstName}
+          onChange={handleFirstNameChange}
+        ></Input>
+        <Input
+          label={'Last Name:'}
+          type={'text'}
+          value={lastName}
+          onChange={handleLastNameChange}
+        ></Input>
+        <Input
+          label={'Email:'}
+          type={'email'}
+          value={email}
+          onChange={handleEmailChange}
+        ></Input>
+        <Input
+          label={'Phone:'}
+          type={'tel'}
+          value={phone}
+          onChange={handlePhoneChange}
+        ></Input>
+        <button 
+          type="button" 
+          className="submit" 
+          onClick={ () => { handleClick(true) }}
+        >
+          Submit
+        </button>
+      </form>
+    )
+  }
 }
