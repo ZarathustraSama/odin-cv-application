@@ -8,16 +8,8 @@ export default function EducationalExp() {
   const [title, setTitle] = useState('');
   const [studyDate, setStudyDate] = useState('');
 
-  function handleSchoolNameChange(e) {
-    setSchoolName(e.target.value);
-  }
-
-  function handleTitleChange(e) {
-    setTitle(e.target.value);
-  }
-
-  function handleStudyDateChange(e) {
-    setStudyDate(e.target.value);
+  function handleChange(setFunction, e) {
+    setFunction(e.target.value);
   }
 
   function handleClick(read) {
@@ -56,19 +48,19 @@ export default function EducationalExp() {
           label={'School Name: '}
           type={'text'}
           value={schoolName}
-          onChange={handleSchoolNameChange}
+          onChange={e => { handleChange(setSchoolName, e) }}
         ></Input>
         <Input
           label={'Title: '}
           type={'text'}
           value={title}
-          onChange={handleTitleChange}
+          onChange={e => { handleChange(setTitle, e) }}
         ></Input>
         <Input
           label={'Study Date: '}
           type={'date'}
           value={studyDate}
-          onChange={handleStudyDateChange}
+          onChange={e => { handleChange(setStudyDate, e) }}
         ></Input>
         <button 
           className="submit" 

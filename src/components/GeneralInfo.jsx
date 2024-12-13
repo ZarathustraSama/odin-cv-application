@@ -9,20 +9,8 @@ export default function GeneralInfo() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  function handleFirstNameChange(e) {
-    setFirstName(e.target.value);
-  }
-
-  function handleLastNameChange(e) {
-    setLastName(e.target.value);
-  }
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-
-  function handlePhoneChange(e) {
-    setPhone(e.target.value);
+  function handleChange(setFunction, e) {
+    setFunction(e.target.value);
   }
 
   function handleClick(read) {
@@ -65,25 +53,25 @@ export default function GeneralInfo() {
           label={'First Name: '}
           type={'text'}
           value={firstName}
-          onChange={handleFirstNameChange}
+          onChange={ e => { handleChange(setFirstName, e) }}
         ></Input>
         <Input
           label={'Last Name:'}
           type={'text'}
           value={lastName}
-          onChange={handleLastNameChange}
+          onChange={ e => { handleChange(setLastName, e) }}
         ></Input>
         <Input
           label={'Email:'}
           type={'email'}
           value={email}
-          onChange={handleEmailChange}
+          onChange={ e => { handleChange(setEmail, e) }}
         ></Input>
         <Input
           label={'Phone:'}
           type={'tel'}
           value={phone}
-          onChange={handlePhoneChange}
+          onChange={ e => { handleChange(setPhone, e) }}
         ></Input>
         <button 
           type="button" 
