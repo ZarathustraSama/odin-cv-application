@@ -1,8 +1,8 @@
 import GeneralInfo from './components/GeneralInfo';
 import EducationalExp from './components/EducationalExp';
 import PracticalExp from './components/PracticalExp';
-import './App.css'
-import './styles/style.css'
+import './App.css';
+import './styles/style.css';
 
 function App() {
 
